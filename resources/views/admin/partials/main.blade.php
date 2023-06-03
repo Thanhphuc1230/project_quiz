@@ -8,7 +8,7 @@
     <i class="ti-menu"></i>
     </div>
     <div class="line_icon open_miniSide d-none d-lg-block">
-    <img src="{{ asset('style/img/line_img.png') }}" alt="">
+    <img src="{{ asset('admin/img/line_img.png') }}" alt="">
     </div>
     </div>
     </div>

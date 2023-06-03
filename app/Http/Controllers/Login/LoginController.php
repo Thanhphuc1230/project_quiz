@@ -5,14 +5,55 @@ namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Login\RegisterRequest;
+use App\Http\Requests\Login\LoginRequest;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Mail\NotifyMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function getLogin(){
         return view('login.login');
+    }
+
+    public function postLogin(LoginRequest $request)
+    {
+        $login = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            if ($user->email_verified_at != null) {
+                if (Auth::attempt($login)) {
+                    if (Auth::user()->level == 1 || Auth::user()->level == 2) {
+                        $request->session()->regenerate();
+                        return redirect()
+                            ->route('admin.categories.index')
+                            ->with('success', 'Login with admin account success.');
+                    } else {
+                        return redirect()
+                            ->route('website.index')
+                            ->with('success', 'Đăng nhập thành công ');
+                    }
+                } else {
+                    return back()->with([
+                        'error' => 'Email or password wrong, Please enter again',
+                    ]);
+                }
+            } else {
+                return back()->with([
+                    'error' => 'Please confirm your email',
+                ]);
+            }
+        } else {
+            return back()->with([
+                'error' => 'This account does not exit',
+            ]);
+        }
     }
 
     public function getRegister(){
@@ -49,6 +90,17 @@ class LoginController extends Controller
         } else {
             return redirect()->route('website.index');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('getLogin');
     }
 
 }

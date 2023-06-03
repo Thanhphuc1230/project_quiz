@@ -1,13 +1,14 @@
 @extends('login.master')
 @section('title', 'Login')
 @section('content')
-    <form action="#">
+    <form action="{{ route('postLogin') }}" method="post">
+        @csrf
         <div class="field input-field">
-            <input type="email" placeholder="Email" class="input">
+            <input type="email" placeholder="Email" class="input" name="email">
         </div>
 
         <div class="field input-field">
-            <input type="password" placeholder="Password" class="password">
+            <input type="password" placeholder="Password" class="password" name="password">
             <i class='bx bx-hide eye-icon'></i>
         </div>
 
@@ -16,7 +17,7 @@
         </div>
 
         <div class="field button-field">
-            <button>Login</button>
+            <button type="submit">Login</button>
         </div>
     </form>
     <div class="form-link">
@@ -35,7 +36,7 @@
 
     <div class="media-options">
         <a href="#" class="field google">
-            <img src="images/google.png" alt="" class="google-img">
+            <img src="{{ asset('login_user/images/google.png') }}" alt="" class="google-img">
             <span>Login with Google</span>
         </a>
     </div>

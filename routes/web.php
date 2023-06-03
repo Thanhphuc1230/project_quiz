@@ -5,6 +5,8 @@ use App\Http\Controllers\Login\LoginController;
 
 use App\Http\Controllers\Admin\CategoryController;
 
+use App\Http\Controllers\Website\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,15 +24,15 @@ Route::get('/', function () {
 
 //Login
 Route::get('/login', [LoginController::class, 'getLogin'])->name('getLogin');
+Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
 
 Route::get('/register', [LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');
 Route::get('verify/{uuid}', [LoginController::class, 'verify'])->name('verify');
 
-
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Admin
 Route::prefix('admin')->name('admin.')->group(function () {
-    
     Route::controller(CategoryController::class)->prefix('categories')->name('categories.')->group(
         function () {
             Route::get('/', 'index')->name('index');
@@ -42,4 +44,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         }
     );
  
+});
+
+//Website
+Route::name('website.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+   
 });
