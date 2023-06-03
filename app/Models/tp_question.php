@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class tp_question extends Model
 {
     use HasFactory;
-    protected $table = 'tp_questions';
+    protected $table = 'tp_question';
     protected $primaryKey = 'id_question';
 
     protected $fillable = [
@@ -20,6 +20,7 @@ class tp_question extends Model
         'option_d',
         'answers',
         'explain',
+        'status_quiz',
         'category_id',
     ];
 }

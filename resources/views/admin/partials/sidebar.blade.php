@@ -36,17 +36,17 @@
                 </div>
             </a>
         </li>
-        {{-- <li class="">
-            <a aria-expanded="false" href="{{ route('admin.news.index') }}">
+        <li class="">
+            <a aria-expanded="false" href="{{ route('admin.quiz.index') }}">
                 <div class="nav_icon_small">
                     <img src="{{ asset('admin/img/menu-icon/11.svg') }}" alt="">
                 </div>
                 <div class="nav_title">
-                    <span>Bài biết</span>
+                    <span>Câu hỏi</span>
                 </div>
             </a>
         </li>
-        <li class="">
+        {{-- <li class="">
             <a aria-expanded="false" href="{{ route('admin.comment.index') }}">
                 <div class="nav_icon_small">
                     <img src="{{ asset('admin/img/menu-icon/20.svg') }}" alt="">

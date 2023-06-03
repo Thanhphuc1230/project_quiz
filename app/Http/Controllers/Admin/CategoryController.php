@@ -35,11 +35,12 @@ class CategoryController extends Controller
     public function status_categories($uuid,$status){
       
         tp_category::where('uuid_category',$uuid)->update(['status_cate'=>$status]);
+        $statusChange = ($status == 0) ? 'Tắt' : 'Kích hoạt';
 
-        return redirect()->back()->with('success', 'Kích hoạt sản phẩm thành công');
+        return redirect()->back()->with('success', ''.$statusChange.' chủ đề  thành công');
     }
     public function edit(string $uuid)
-    {   
+    {  
         $category =tp_category::where('uuid_category', $uuid);
         
         if ($category->exists()) {

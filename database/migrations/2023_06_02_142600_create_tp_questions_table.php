@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tp_questions', function (Blueprint $table) {
+        Schema::create('tp_question', function (Blueprint $table) {
             $table->id('id_question');
             $table->uuid('uuid_question');
             $table->string('quiz');
@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('option_b');
             $table->string('option_c');
             $table->string('option_d');
-            $table->string('answers');
+            $table->string('answers',2);
             $table->string('explain');
+            $table->unsignedTinyInteger('status_quiz');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tp_questions');
+        Schema::dropIfExists('tp_question');
     }
 };

@@ -23,7 +23,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name_cate' => request()->route('uuid') 
-                    ? 'required|unique:tp_categories,name_cate,'.request()->route('uuid_category').',uuid_category'
+                    ? 'required|unique:tp_categories,name_cate,'.request()->route('uuid').',uuid_category'
                     : 'required|unique:tp_categories'
         ];
     }

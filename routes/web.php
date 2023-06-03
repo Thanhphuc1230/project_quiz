@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Login\LoginController;
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\QuizController;
 
 use App\Http\Controllers\Website\HomeController;
 
@@ -43,7 +44,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
         }
     );
- 
+    Route::controller(QuizController::class)->prefix('quiz')->name('quiz.')->group(
+        function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/status_quiz{uuid}/{status}', 'status_quiz')->name('status_quiz');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{uuid}', 'edit')->name('edit');
+            Route::post('/update/{uuid}', 'update')->name('update');
+            Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
+        }
+    );
 });
 
 //Website

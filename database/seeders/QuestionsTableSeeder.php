@@ -14,8 +14,9 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run(): void
     {   
-
-        for ($i = 1; $i <= 100; $i++) {
+        $options = ['a', 'b', 'c', 'd'];
+        $randomOption = $options[array_rand($options)];
+        for ($i = 1; $i <= 20; $i++) {
             tp_question::create([
                 'uuid_question' => Str::uuid(),
                 'quiz' => 'Question ' . $i,
@@ -23,8 +24,9 @@ class QuestionsTableSeeder extends Seeder
                 'option_b' => 'Option B',
                 'option_c' => 'Option C',
                 'option_d' => 'Option D',
-                'answers' => 'Option A',
+                'answers' => $randomOption,
                 'explain' => 'Explanation for Question ' . $i,
+                'status_quiz' => '1',
                 'category_id' =>random_int(1,10),
             ]);
         }

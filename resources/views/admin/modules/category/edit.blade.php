@@ -19,7 +19,6 @@
                                     <h3 class="m-0">Category Edit</h3>
                                 </div>
                             </div>
-                            @include('admin.partials.error')
                         </div>
                         <div class="white_card_body">
                             <form>
