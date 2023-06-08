@@ -25,18 +25,10 @@ class QuizRequest extends FormRequest
             'quiz' => request()->route('uuid') 
                     ? 'required|unique:tp_question,quiz,'.request()->route('uuid').',uuid_question'
                     : 'required|unique:tp_question',
-                    'option_a' => request()->route('uuid') 
-                    ? 'required|:tp_question,option_a,'.request()->route('uuid').',uuid_question'
-                    : 'required:tp_question',
-                    'option_b' => request()->route('uuid') 
-                    ? 'required:tp_question,option_b,'.request()->route('uuid').',uuid_question'
-                    : 'required:tp_question',
-                    'option_c' => request()->route('uuid') 
-                    ? 'required:tp_question,option_c,'.request()->route('uuid').',uuid_question'
-                    : 'required:tp_question',
-                    'option_d' => request()->route('uuid') 
-                    ? 'required:tp_question,option_d,'.request()->route('uuid').',uuid_question'
-                    : 'required:tp_question',
+            'option' => request()->route('uuid') 
+            ? 'required'
+            : 'required',
+                  
         ];
     }
 
@@ -45,10 +37,8 @@ class QuizRequest extends FormRequest
         return [
             'quiz.required' => 'Vui lòng nhập câu hỏi',
             'quiz.unique' => 'Câu hỏi này đã tồn tại',
-            'option_a.required' => 'Vui lòng nhập đáp án A',
-            'option_b.required' => 'Vui lòng nhập đáp án B',
-            'option_c.required' => 'Vui lòng nhập đáp án C',
-            'option_d.required' => 'Vui lòng nhập đáp án D',
+            'option.required' => 'Vui lòng nhập đáp án ',
+         
         ];
     }
 }

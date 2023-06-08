@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id('id_question');
             $table->uuid('uuid_question');
             $table->string('quiz');
-            $table->string('option_a');
-            $table->string('option_b');
-            $table->string('option_c');
-            $table->string('option_d');
+            $table->json('option');
             $table->string('answers',2);
             $table->string('explain');
             $table->unsignedTinyInteger('status_quiz');

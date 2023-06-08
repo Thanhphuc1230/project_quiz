@@ -33,7 +33,7 @@ Route::get('verify/{uuid}', [LoginController::class, 'verify'])->name('verify');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Admin
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('check_login')->group(function () {
     Route::controller(CategoryController::class)->prefix('categories')->name('categories.')->group(
         function () {
             Route::get('/', 'index')->name('index');
@@ -50,6 +50,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/status_quiz{uuid}/{status}', 'status_quiz')->name('status_quiz');
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{uuid}', 'edit')->name('edit');
+            Route::get('/test', 'test')->name('test');
+            Route::post('/test1', 'test1')->name('test1');
             Route::post('/update/{uuid}', 'update')->name('update');
             Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
         }

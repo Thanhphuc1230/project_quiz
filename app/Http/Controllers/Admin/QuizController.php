@@ -13,12 +13,13 @@ class QuizController extends Controller
 {
     public function index(){
         $data['questions']= tp_question::
-        join('tp_categories','tp_question.category_id','=','tp_categories.parent_id')
+        join('tp_categories','tp_question.category_id','=','tp_categories.id_category')
         ->select('uuid_question','quiz','name_cate','tp_question.created_at')
         ->paginate(10);
         $data['categories_select'] = tp_category::select('id_category', 'name_cate', 'parent_id')
             ->where('status_cate', 1)
             ->get();
+        $data['counter'] = 2;
         return view('admin.modules.quiz.index',$data);
     }
 
@@ -33,13 +34,16 @@ class QuizController extends Controller
             ->with('success', ''.$statusChange.' câu hỏi thành công');
     }
 
+ 
+
     public function store(QuizRequest $request)
-    {   $data = $request->except('_token');
+    {   
+        $data = $request->except('_token');
         $data['created_at'] = new \DateTime();
         $data['uuid_question'] = Str::uuid();
-
+        $data['option'] = json_encode($data['option']);
         tp_question::insert($data);
-
+     
         return redirect()
             ->back()
             ->with('success', 'Đã thêm câu hỏi thành công');
@@ -47,12 +51,13 @@ class QuizController extends Controller
     public function edit(string $uuid)
     {
         $quiz = tp_question::where('uuid_question', $uuid);
-
+    
         if ($quiz->exists()) {
             $data['quiz'] = $quiz->first();
             $data['category_selected'] = tp_category::select('id_category', 'name_cate', 'parent_id')
                 ->where('status_cate', 1)
                 ->get();
+            $data['counter'] = count(json_decode($data['quiz']->option));
             return view('admin.modules.quiz.edit', $data);
         } else {
             abort(404);
@@ -76,7 +81,7 @@ class QuizController extends Controller
         if ($quiz) {
             $quiz->delete();
             return redirect()
-                ->route('admin.categories.index')
+                ->route('admin.quiz.index')
                 ->with('success', 'Xóa người dùng thành công.');
         } else {
             abort(404);

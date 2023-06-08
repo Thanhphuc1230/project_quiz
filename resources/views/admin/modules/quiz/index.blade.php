@@ -60,29 +60,26 @@
                                                                 <h4 class="card-subtitle mb-2">Câu hỏi</h4>
                                                                 <textarea type="text" name="quiz" class="form-control">{{ old('quiz') }}</textarea>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <h4 class="card-subtitle mb-2">Đáp án A</h4>
-                                                                <textarea type="text" name="option_a" class="form-control">{{ old('option_a') }}</textarea>
+                                                            <div>
+                                                                <div class="mb-3">
+                                                                    <h4 class="card-subtitle mb-2">Đáp án A</h4>
+                                                                    <textarea type="text" name="option[]" class="form-control"></textarea>
+                                                                </div>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <h4 class="card-subtitle mb-2">Đáp án B</h4>
-                                                                <textarea type="text" name="option_b" class="form-control">{{ old('option_b') }}</textarea>
+                                                            <div id="inputs">
+                                                                <div class="mb-3">
+                                                                    <h4 class="card-subtitle mb-2">Đáp án B</h4>
+                                                                    <textarea type="text" name="option[]" class="form-control"></textarea>
+                                                                </div>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <h4 class="card-subtitle mb-2">Đáp án C</h4>
-                                                                <textarea type="text" name="option_c" class="form-control">{{ old('option_c') }}</textarea>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <h4 class="card-subtitle mb-2">Đáp án D</h4>
-                                                                <textarea type="text" name="option_d" class="form-control">{{ old('option_d') }}</textarea>
-                                                            </div>
+                                                            <button type="button" id="load-more-option"
+                                                                class="btn btn-success rounded-pill mb-3">Thêm đám
+                                                                án</button>
                                                             <div class="mb-3">
                                                                 <h6 class="card-subtitle mb-2">Đáp án đúng</h6>
                                                                 <select class="form-select" name="answers">
                                                                     <option selected="" value="a">A</option>
-                                                                    <option value="b">B</option>
-                                                                    <option value="c">C</option>
-                                                                    <option value="d">D</option>
+                                                                    <option selected="" value="b">B</option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">

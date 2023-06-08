@@ -14,10 +14,7 @@ class tp_question extends Model
     protected $fillable = [
         'uuid_question',
         'quiz',
-        'option_a',
-        'option_b',
-        'option_c',
-        'option_d',
+        'option',
         'answers',
         'explain',
         'status_quiz',

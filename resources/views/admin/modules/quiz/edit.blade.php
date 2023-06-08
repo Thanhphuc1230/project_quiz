@@ -35,27 +35,25 @@
                                 </div>
                                 <div class="mb-3">
                                     <h4 class="card-subtitle mb-2">Câu hỏi</h4>
-                                    <textarea type="text" name="quiz" class="form-control">{{ old('quiz',$quiz->quiz) }}</textarea>
+                                    <textarea type="text" name="quiz" class="form-control">{{ old('quiz', $quiz->quiz) }}</textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <h4 class="card-subtitle mb-2">Đáp án A</h4>
-                                    <textarea type="text" name="option_a" class="form-control">{{ old('option_a',$quiz->option_a) }}</textarea>
+                                @php
+                                    $counter = count(json_decode($quiz->option));
+                                @endphp
+                                @foreach (json_decode($quiz->option) as $index => $item)
+                                    <div class="mb-3">
+                                        <h4 class="card-subtitle mb-2">Đáp án {{ chr(65 + $index) }}</h4>
+                                        <textarea type="text" name="option[]" class="form-control">{{ old('option', $item) }}</textarea>
+                                    </div>
+                                @endforeach
+                                <div class="mb-3" id="inputs">
                                 </div>
-                                <div class="mb-3">
-                                    <h4 class="card-subtitle mb-2">Đáp án B</h4>
-                                    <textarea type="text" name="option_b" class="form-control">{{ old('option_b',$quiz->option_b) }}</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <h4 class="card-subtitle mb-2">Đáp án C</h4>
-                                    <textarea type="text" name="option_c" class="form-control">{{ old('option_c',$quiz->option_c) }}</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <h4 class="card-subtitle mb-2">Đáp án D</h4>
-                                    <textarea type="text" name="option_d" class="form-control">{{ old('option_d',$quiz->option_d) }}</textarea>
-                                </div>
+                                <button type="button" id="load-more-option"
+                                    class="btn btn-success rounded-pill mb-3">Thêm đáp
+                                    án</button>
                                 <div class="mb-3">
                                     <h4 class="card-subtitle mb-2">Giải thích</h4>
-                                    <textarea type="text" name="explain" class="form-control">{{ old('explain',$quiz->explain) }}</textarea>
+                                    <textarea type="text" name="explain" class="form-control">{{ old('explain', $quiz->explain) }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="card-subtitle mb-2">Đáp án đúng</h6>

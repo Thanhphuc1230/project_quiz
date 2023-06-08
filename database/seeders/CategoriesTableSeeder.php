@@ -13,14 +13,35 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
-            tp_category::create([
+        tp_category::insert([
+            [
                 'uuid_category' => Str::uuid(),
-                'name_cate' => 'Category ' . $i,
-                'status_cate' => rand(0, 1),
-                'link' => 'Link ' . $i,
-                'parent_id' => rand(1, 10),
-            ]);
-        }
+                'name_cate' => 'Toán',
+                'status_cate' => 1,
+                'link' => NULL,
+                'parent_id' => 1
+            ],
+            [
+                'uuid_category' => Str::uuid(),
+                'name_cate' => 'Anh Văn',
+                'status_cate' => 1,
+                'link' => NULL,
+                'parent_id' => 1
+            ],
+            [
+                'uuid_category' => Str::uuid(),
+                'name_cate' => 'Vật Lý',
+                'status_cate' => 1,
+                'link' => NULL,
+                'parent_id' => 1
+            ],
+            [
+                'uuid_category' => Str::uuid(),
+                'name_cate' => 'Hóa Học',
+                'status_cate' => 1,
+                'link' => NULL,
+                'parent_id' => 1
+            ],
+        ]);
     }
 }
