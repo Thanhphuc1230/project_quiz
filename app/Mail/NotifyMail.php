@@ -28,7 +28,7 @@ class NotifyMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thông báo  tạo tài khoản tại Quiz',
+            subject: 'Thông báo tạo tài khoản tại Quiz',
         );
     }
 

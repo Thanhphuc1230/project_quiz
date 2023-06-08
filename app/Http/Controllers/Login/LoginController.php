@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Mail\NotifyMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     public function getLogin(){
@@ -64,7 +65,7 @@ class LoginController extends Controller
 
         $data = $request->except('_token', 'password_confirmation');
         $data['fullname'] = '@user' .mt_rand(100000, 999999999);
-        $data['password'] = bcrypt($request->password);
+        $data['password'] = Hash::make($request->password);
         $data['created_at'] = new \DateTime();
         $data['uuid'] = Str::uuid();
         $data['status_user'] = 1;

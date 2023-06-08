@@ -5,6 +5,8 @@ use App\Http\Controllers\Login\LoginController;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\QuizController;
+use App\Http\Controllers\Admin\UserController;
+
 
 use App\Http\Controllers\Website\HomeController;
 
@@ -50,8 +52,16 @@ Route::prefix('admin')->name('admin.')->middleware('check_login')->group(functio
             Route::get('/status_quiz{uuid}/{status}', 'status_quiz')->name('status_quiz');
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{uuid}', 'edit')->name('edit');
-            Route::get('/test', 'test')->name('test');
-            Route::post('/test1', 'test1')->name('test1');
+            Route::post('/update/{uuid}', 'update')->name('update');
+            Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
+        }
+    );
+    Route::controller(UserController::class)->prefix('users')->name('users.')->group(
+        function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/status_user{uuid}/{status}', 'status_user')->name('status_user');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{uuid}', 'edit')->name('edit');
             Route::post('/update/{uuid}', 'update')->name('update');
             Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
         }

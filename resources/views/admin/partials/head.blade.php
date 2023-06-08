@@ -55,6 +55,7 @@
 
     <script src="{{ asset('admin/vendors/ckeditor/ckeditor.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @if(Route::currentRouteName() === 'admin.quiz')
     <script>
         $(document).ready(function() {
             var counter = {{ $counter }};
@@ -95,3 +96,4 @@
             updateCounts();
         });
     </script>
+    @endif
