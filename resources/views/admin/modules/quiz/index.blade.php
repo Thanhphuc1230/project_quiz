@@ -73,7 +73,7 @@
                                                                 </div>
                                                             </div>
                                                             <button type="button" id="load-more-option"
-                                                                class="btn btn-success rounded-pill mb-3">Thêm đám
+                                                                class="btn btn-success rounded-pill mb-3">Thêm đáp
                                                                 án</button>
                                                             <div class="mb-3">
                                                                 <h6 class="card-subtitle mb-2">Đáp án đúng</h6>

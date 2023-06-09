@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Login\SocialController;
+
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\QuizController;
@@ -9,6 +11,8 @@ use App\Http\Controllers\Admin\UserController;
 
 
 use App\Http\Controllers\Website\HomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +32,9 @@ Route::get('/', function () {
 //Login
 Route::get('/login', [LoginController::class, 'getLogin'])->name('getLogin');
 Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
+//Login with Social
+route::get('/auth/{provider}',[SocialController::class,'redirect'])->name('provider-auth');
+Route::get('auth/{provider}/call-back',[SocialController::class,'callbackSocial']);
 
 Route::get('/register', [LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');

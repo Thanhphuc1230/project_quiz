@@ -55,45 +55,45 @@
 
     <script src="{{ asset('admin/vendors/ckeditor/ckeditor.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    @if(Route::currentRouteName() === 'admin.quiz')
-    <script>
-        $(document).ready(function() {
-            var counter = {{ $counter }};
-            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    @if (Route::is('admin.quiz.*'))
+        <script>
+            $(document).ready(function() {
+                var counter = {{ $counter }};
+                var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-            $('#load-more-option').click(function() {
+                $('#load-more-option').click(function() {
 
-                var label = labels[counter];
-                var newInput = '<div class="mb-3">' +
-                    '<h4 class="card-subtitle mb-2">Đáp án ' + label + '</h4>' +
-                    '<div>' +
-                    '<textarea name="option[]" placeholder="Input ' + label +
-                    '" class="form-control"></textarea>' +
-                    '</div>' +
-                    '</div>';
-                counter++;
-                $('#inputs').append(newInput);
+                    var label = labels[counter];
+                    var newInput = '<div class="mb-3">' +
+                        '<h4 class="card-subtitle mb-2">Đáp án ' + label + '</h4>' +
+                        '<div>' +
+                        '<textarea name="option[]" placeholder="Input ' + label +
+                        '" class="form-control"></textarea>' +
+                        '</div>' +
+                        '</div>';
+                    counter++;
+                    $('#inputs').append(newInput);
 
-                var newOption = $('<option>', { // Create a new option element
-                    value: label.toLowerCase(), // Set the value to lowercase label
-                    text: label // Display the label
+                    var newOption = $('<option>', { // Create a new option element
+                        value: label.toLowerCase(), // Set the value to lowercase label
+                        text: label // Display the label
+                    });
+
+                    $('select[name="answers"]').append(
+                        newOption); // Append the new option to the select element
+
+                    updateCounts();
                 });
 
-                $('select[name="answers"]').append(
-                    newOption); // Append the new option to the select element
+                function updateCounts() {
+                    var optionCount = $('#inputs').children().length;
+                    var answerCount = $('select[name="answers"]').children().length;
+
+                    $('#option-count').text(optionCount);
+                    $('#answer-count').text(answerCount);
+                }
 
                 updateCounts();
             });
-
-            function updateCounts() {
-                var optionCount = $('#inputs').children().length;
-                var answerCount = $('select[name="answers"]').children().length;
-
-                $('#option-count').text(optionCount);
-                $('#answer-count').text(answerCount);
-            }
-
-            updateCounts();
-        });
-    </script>
+        </script>
     @endif

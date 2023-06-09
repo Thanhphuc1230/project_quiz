@@ -16,6 +16,13 @@ class CategoriesTableSeeder extends Seeder
         tp_category::insert([
             [
                 'uuid_category' => Str::uuid(),
+                'name_cate' => 'Menu',
+                'status_cate' => 0,
+                'link' => NULL,
+                'parent_id' => 0
+            ],
+            [
+                'uuid_category' => Str::uuid(),
                 'name_cate' => 'Toán',
                 'status_cate' => 1,
                 'link' => NULL,
