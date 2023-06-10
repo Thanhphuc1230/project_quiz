@@ -35,10 +35,15 @@ Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogi
 //Login with Social
 route::get('/auth/{provider}',[SocialController::class,'redirect'])->name('provider-auth');
 Route::get('auth/{provider}/call-back',[SocialController::class,'callbackSocial']);
-
+//register
 Route::get('/register', [LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');
 Route::get('verify/{uuid}', [LoginController::class, 'verify'])->name('verify');
+//forgot password
+Route::get('password/forgot', [LoginController::class, 'getForgot'])->name('getForgot');
+Route::post('password/forgot', [LoginController::class, 'sendResetLink'])->name('sendResetLink');
+Route::get('password/reset/{token}', [LoginController::class, 'showResetFrom'])->name('showResetFrom');
+Route::post('password/reset', [LoginController::class, 'resetPassword'])->name('resetPassword');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Admin
