@@ -123,6 +123,9 @@
                                     <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
                                         rowspan="1" colspan="1" style="width: 133px;"
                                         aria-label="Category: activate to sort column ascending">Câu hỏi</th>
+                                        <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                        rowspan="1" colspan="1" style="width: 133px;"
+                                        aria-label="Category: activate to sort column ascending">Đáp án</th>
                                     <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
                                         rowspan="1" colspan="1" style="width: 133px;"
                                         aria-label="Category: activate to sort column ascending">Thể loại</th>
@@ -143,8 +146,10 @@
                                 <tr role="row" class="odd">
                                     @foreach ($questions as $item)
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->quiz }}</td>
+                                        <td>{{ Str::words($item->quiz, 10) }}</td>
+                                        <td>{{ $item->answers }}</td>
                                         <td>{{ $item->name_cate }}</td>
+                                        
                                         <td>
                                             @php
                                                 if ($item->status_quiz == 0) {
@@ -182,9 +187,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="paginate-table">
+                    {{-- <div class="paginate-table">
                         {!! $questions->links() !!}
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             {{-- end content --}}

@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index(){
         $data['categories']= tp_category::select('uuid_category','name_cate', 'status_cate', 'created_at')->paginate(10);
-        $data['category_selected'] = tp_category::select('id_category', 'name_cate')->where('parent_id', 1)->get();
+        $data['category_selected'] = tp_category::select('id_category', 'name_cate')->where('parent_id','!=', 0)->get();
 
         return view('admin.modules.category.index',$data);
     }
@@ -76,7 +76,7 @@ class CategoryController extends Controller
             $category->delete();
             return back()->with('success', 'Xóa chủ đề thành công.');
         } else {
-            abort(404);
+            return back()->with('error', 'Không tìm thấy chủ đề thành công.');
         }
     }
 }

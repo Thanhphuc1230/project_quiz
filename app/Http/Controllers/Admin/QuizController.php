@@ -14,8 +14,8 @@ class QuizController extends Controller
     public function index(){
         $data['questions']= tp_question::
         join('tp_categories','tp_question.category_id','=','tp_categories.id_category')
-        ->select('uuid_question','quiz','name_cate','tp_question.created_at')
-        ->paginate(10);
+        ->select('uuid_question','quiz','name_cate','tp_question.created_at','answers','status_quiz')
+        ->get();
         $data['categories_select'] = tp_category::select('id_category', 'name_cate', 'parent_id')
             ->where('status_cate', 1)
             ->get();
@@ -81,10 +81,12 @@ class QuizController extends Controller
         if ($quiz) {
             $quiz->delete();
             return redirect()
-                ->route('admin.quiz.index')
-                ->with('success', 'Xóa người dùng thành công.');
+                ->back()
+                ->with('success', 'Xóa câu hỏi thành công.');
         } else {
-            abort(404);
+            return redirect()
+                ->back()
+                ->with('error', 'Không tìm thấy câu hỏi .');
         }
     }
 }

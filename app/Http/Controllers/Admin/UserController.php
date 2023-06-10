@@ -154,7 +154,9 @@ class UserController extends Controller
                 ->back()
                 ->with('success', 'Xóa người dùng thành công.');
         } else {
-            abort(404);
+            return redirect()
+                ->back()
+                ->with('error', 'Không tìm thấy người dùng .');
         }
     }
 }

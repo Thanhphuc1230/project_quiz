@@ -41,10 +41,10 @@
                                     $counter = count(json_decode($quiz->option));
                                 @endphp
                                 @foreach (json_decode($quiz->option) as $index => $item)
-                                    <div class="mb-3">
-                                        <h4 class="card-subtitle mb-2">Đáp án {{ chr(65 + $index) }}</h4>
-                                        <textarea type="text" name="option[]" class="form-control">{{ old('option', $item) }}</textarea>
-                                    </div>
+                                <div class="mb-3">
+                                    <h4 class="card-subtitle mb-2">Đáp án {{ chr(65 + $index) }}</h4>
+                                    <textarea type="text" name="option[]" class="form-control">{{ is_array(old('option')) && isset(old('option')[$index]) ? old('option')[$index] : $item }}</textarea>
+                                </div>
                                 @endforeach
                                 <div class="mb-3" id="inputs">
                                 </div>
@@ -75,7 +75,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                             </form>
                         </div>
                     </div>

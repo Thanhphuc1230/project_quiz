@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tp_question', function (Blueprint $table) {
             $table->id('id_question');
             $table->uuid('uuid_question');
-            $table->string('quiz');
+            $table->text('quiz');
             $table->json('option');
             $table->string('answers',2);
             $table->string('explain');

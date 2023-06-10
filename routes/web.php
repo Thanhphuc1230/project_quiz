@@ -8,7 +8,7 @@ use App\Http\Controllers\Login\SocialController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\Admin\CrawlerController;
 
 use App\Http\Controllers\Website\HomeController;
 
@@ -78,6 +78,7 @@ Route::prefix('admin')->name('admin.')->middleware('check_login')->group(functio
             Route::get('/destroy/{uuid}', 'destroy')->name('destroy');
         }
     );
+    Route::get('/get-data', [CrawlerController::class, 'index'])->name('getData');
 });
 
 //Website

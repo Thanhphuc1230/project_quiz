@@ -22,9 +22,9 @@ class QuizRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quiz' => request()->route('uuid') 
-                    ? 'required|unique:tp_question,quiz,'.request()->route('uuid').',uuid_question'
-                    : 'required|unique:tp_question',
+            // 'quiz' => request()->route('uuid') 
+            //         ? 'required|unique:tp_question,quiz,'.request()->route('uuid').',uuid_question'
+            //         : 'required|unique:tp_question',
             'option' => request()->route('uuid') 
             ? 'required'
             : 'required',
